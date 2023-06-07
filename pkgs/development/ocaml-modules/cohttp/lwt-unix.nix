@@ -1,6 +1,6 @@
 { lib, buildDunePackage, cohttp-lwt
 , conduit-lwt-unix, conduit-lwt, ppx_sexp_conv
-, cmdliner, fmt, logs, magic-mime
+, cmdliner, fmt, logs, magic-mime, fieldslib
 , ounit
 , cacert
 }:
@@ -17,6 +17,7 @@ buildDunePackage {
     cohttp-lwt
     conduit-lwt
     conduit-lwt-unix
+    fieldslib
     fmt
     logs
     magic-mime

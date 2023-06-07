@@ -1,4 +1,6 @@
-{ lib, buildDunePackage, cohttp }:
+{ lib, buildDunePackage
+, cohttp, fieldslib
+}:
 
 buildDunePackage {
   pname = "cohttp-top";
@@ -6,7 +8,10 @@ buildDunePackage {
 
   duneVersion = "3";
 
-  propagatedBuildInputs = [ cohttp ];
+  propagatedBuildInputs = [
+    cohttp
+    fieldslib
+  ];
 
   doCheck = true;
 

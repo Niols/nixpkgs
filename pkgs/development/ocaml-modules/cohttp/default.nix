@@ -1,22 +1,26 @@
 { lib, fetchurl, buildDunePackage
-, ppx_sexp_conv, base64, jsonm, re, stringext, uri-sexp
+, ppx_sexp_conv, ppx_fields_conv, base64, jsonm, re, stringext, uri-sexp
 , ocaml, fmt, alcotest
 , crowbar
 }:
 
 buildDunePackage rec {
   pname = "cohttp";
-  version = "5.1.0";
+  version = "2.5.8";
 
   minimalOCamlVersion = "4.08";
   duneVersion = "3";
 
   src = fetchurl {
-    url = "https://github.com/mirage/ocaml-cohttp/releases/download/v${version}/cohttp-v${version}.tbz";
-    sha256 = "sha256-mINgeBO7DSsWd84gYjQNUQFqbh8KBZ+S2bYI/iVWMAc=";
+    url = "https://github.com/mirage/ocaml-cohttp/releases/download/v${version}/cohttp-${version}.tbz";
+    sha256 = "sha256-JyJHfR9bsJ6EHevBJcMP9E8bIM+IlLaMtI8rbeCS0lo=";
   };
 
-  buildInputs = [ jsonm ppx_sexp_conv ];
+  buildInputs = [
+    jsonm
+    ppx_sexp_conv
+    ppx_fields_conv
+  ];
 
   propagatedBuildInputs = [ base64 re stringext uri-sexp ];
 

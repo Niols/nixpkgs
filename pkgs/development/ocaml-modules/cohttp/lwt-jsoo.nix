@@ -1,5 +1,5 @@
 { lib, buildDunePackage
-, cohttp, cohttp-lwt, logs, lwt, js_of_ocaml, js_of_ocaml-ppx, js_of_ocaml-lwt
+, cohttp, cohttp-lwt, logs, lwt, js_of_ocaml, js_of_ocaml-ppx, js_of_ocaml-lwt, fieldslib
 , nodejs, lwt_ppx
 }:
 
@@ -12,6 +12,7 @@ buildDunePackage {
   propagatedBuildInputs = [
     cohttp
     cohttp-lwt
+    fieldslib
     logs
     lwt
     js_of_ocaml

@@ -1,7 +1,7 @@
 { buildDunePackage, cohttp, cohttp-lwt
 , mirage-flow, mirage-channel, mirage-kv
 , conduit, conduit-mirage, lwt
-, astring, magic-mime
+, astring, magic-mime, fieldslib
 , ppx_sexp_conv
 }:
 
@@ -16,7 +16,7 @@ buildDunePackage {
 
   propagatedBuildInputs = [
     mirage-flow mirage-channel conduit conduit-mirage mirage-kv
-    lwt cohttp cohttp-lwt astring magic-mime
+    fieldslib lwt cohttp cohttp-lwt astring magic-mime
   ];
 
   meta = cohttp.meta // {

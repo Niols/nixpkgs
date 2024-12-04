@@ -10,6 +10,7 @@
 , ruff
 , tesseract4
 , vde2
+, extraDependencies ? []
 , extraPythonPackages ? (_ : [])
 , nixosTests
 }:
@@ -40,6 +41,7 @@ python3Packages.buildPythonApplication {
     vde2
   ]
     ++ (lib.optionals enableOCR [ imagemagick_light tesseract4 ])
+    ++ extraDependencies
     ++ extraPythonPackages python3Packages;
 
   nativeBuildInputs = [

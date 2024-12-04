@@ -54,6 +54,7 @@ rec {
         (if meta.description or null != null
           then builtins.unsafeGetAttrPos "description" meta
           else builtins.unsafeGetAttrPos "testScript" t)
+    , extraDependencies ? []
     , extraPythonPackages ? (_ : [])
     , interactive ? {}
     } @ t: let

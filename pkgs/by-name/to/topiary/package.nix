@@ -4,6 +4,7 @@
   rustPlatform,
   fetchFromGitHub,
   installShellFiles,
+  versionCheckHook,
   nix-update-script,
 }:
 
@@ -41,6 +42,10 @@ rustPlatform.buildRustPackage rec {
     "--skip=formatted_query_tester"
     "--skip=input_output_tester"
   ];
+
+  nativeInstallCheckInputs = [ versionCheckHook ];
+  doInstallCheck = true;
+  versionCheckProgramArg = [ "--version" ];
 
   env.TOPIARY_LANGUAGE_DIR = "${placeholder "out"}/share/queries";
 

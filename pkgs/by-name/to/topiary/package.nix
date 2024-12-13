@@ -6,6 +6,7 @@
   installShellFiles,
   versionCheckHook,
   nix-update-script,
+  iconv,
 }:
 
 rustPlatform.buildRustPackage rec {
@@ -22,7 +23,14 @@ rustPlatform.buildRustPackage rec {
   nativeBuildInputs = [ installShellFiles ];
 
   useFetchCargoVendor = true;
-  cargoHash = "sha256-o3Y37W6d2kVI6zsyrOZ8UJXehhDVeFYE+BZPiMq3ArY=";
+  cargoHash = "sha256-bk5993v0wn/emzJKvxaPBYjqCmP0BpOuFMga7ZOyqXg=";
+  depsExtraArgs.postBuild = ''
+    find $out -name '*.ps1' -print | while read -r file; do
+      if [ "$(file --brief --mime-encoding "$file")" == utf-16be ]; then
+        ${iconv}/bin/iconv -f UTF-16BE -t UTF16LE "$file" > tmp && mv tmp "$file"
+      fi
+    done
+  '';
 
   cargoBuildFlags = [
     "-p"

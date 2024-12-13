@@ -6,6 +6,7 @@
   installShellFiles,
   versionCheckHook,
   nix-update-script,
+  iconv,
 }:
 
 rustPlatform.buildRustPackage rec {
@@ -23,6 +24,13 @@ rustPlatform.buildRustPackage rec {
 
   useFetchCargoVendor = true;
   cargoHash = "sha256-o3Y37W6d2kVI6zsyrOZ8UJXehhDVeFYE+BZPiMq3ArY=";
+  depsExtraArgs.postBuild = ''
+    for file in \
+      $out/git/036226e5edb410aec004cc7ac0f4b2014dd04a0e/examples/dune/ci/setup-dkml/pc/setup-dkml-windows_x86*.ps1
+    do
+      ${iconv}/bin/iconv -f UTF-16BE -t UTF16LE "$file" > tmp && mv tmp "$file"
+    done
+  '';
 
   cargoBuildFlags = [
     "-p"

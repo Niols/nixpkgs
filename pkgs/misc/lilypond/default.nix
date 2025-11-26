@@ -40,6 +40,7 @@
       metafont
     ]
   ),
+  cairo,
 }:
 
 stdenv.mkDerivation rec {
@@ -110,6 +111,7 @@ stdenv.mkDerivation rec {
     glib
     gmp
     pango
+    cairo
   ];
 
   autoreconfPhase = "NOCONFIGURE=1 sh autogen.sh";
@@ -123,6 +125,7 @@ stdenv.mkDerivation rec {
 
   # documentation makefile uses "out" for different purposes, hence we explicitly set it to an empty string
   makeFlags = [ "out=" ];
+  configureFlags = [ "--enable-cairo-backend" ];
 
   meta = {
     description = "Music typesetting system";

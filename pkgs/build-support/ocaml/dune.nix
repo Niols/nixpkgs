@@ -58,7 +58,7 @@ lib.extendMkDerivation {
         buildPhase =
           args.buildPhase or ''
             runHook preBuild
-            dune build -p ${pname} ''${enableParallelBuilding:+-j $NIX_BUILD_CORES}
+            dune build --release --only-packages ${pname} ''${enableParallelBuilding:+-j $NIX_BUILD_CORES}
             runHook postBuild
           '';
 
@@ -78,7 +78,7 @@ lib.extendMkDerivation {
         checkPhase =
           args.checkPhase or ''
             runHook preCheck
-            dune runtest -p ${pname} ''${enableParallelBuilding:+-j $NIX_BUILD_CORES}
+            dune runtest --only-packages ${pname} ''${enableParallelBuilding:+-j $NIX_BUILD_CORES}
             runHook postCheck
           '';
 
